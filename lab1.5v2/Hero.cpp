@@ -4,7 +4,7 @@
 
 void Hero::see()
 {
-	printf("Hero: %s, skills:\n", get_name());
+	printf("Hero: %s, weapon %s, skills:\n", get_name(), get_weapon());
 	for (int i = 0; i < get_size(); i++)
 	{
 		printf(" - %s\n", get_skill(i));
@@ -14,12 +14,12 @@ void Hero::see()
 void Hero::save(FILE* f)
 {
 	fprintf(f, "H\n");
-	fprintf(f, "%s\n", get_name());
-	fprintf(f, "%s\n", get_weapon());
+	fprintf(f, "%d %s\n", strlen(get_name()), get_name());
+	fprintf(f, "%d %s\n", strlen(get_weapon()), get_weapon());
 	fprintf(f, "%d\n", get_size());
 	for (int i = 0; i < get_size(); i++)
 	{
-		fprintf(f, "%s\n", get_skill(i));
+		fprintf(f, "%d %s\n", strlen(get_skill(i))+1, get_skill(i));
 	}
 }
 

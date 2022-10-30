@@ -21,8 +21,9 @@ void menu()
 
 	while (true)
 	{
-		printf("MAIN MENU\n");
+		printf("\tMAIN MENU\n");
 		scanInt(&t);
+
 		switch (t)
 		{
 		case 0:
@@ -51,7 +52,13 @@ void menu()
 			break;
 
 		case 11:
+			try {
 			cont.load();
+		}
+			catch (char* s)
+			{
+				printf("\n\tATTENTION -- %s\n", s);
+			}
 			break;
 
 		case 12:

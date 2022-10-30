@@ -29,8 +29,10 @@ public:
 
 	Villain(char* n, char* w, char* d, char* pl, int s, char** a) : weapon(w), deed(d), place(pl), size(s), skills(a)
 	{
+		printf("%s %s %s %s\n", n, w, d, pl);
 		printf("Villain() w/params\n");
 		set_name(n);
+
 	}
 
 	~Villain()
@@ -41,7 +43,7 @@ public:
 	void set_weapon(char* w);
 	char* get_weapon();
 
-	void set_place(char* p);
+	void set_place(char* pl);
 	char* get_place();
 
 	void set_deed(char* d);

@@ -102,7 +102,6 @@ void Keeper::save()
 	printf("enter file name: ");
 	scanf("%s", &file);
 
-	printf("file %s\n", file);
 
 	FILE* fp = fopen(file, "w");
 	if (fp == NULL)
@@ -115,7 +114,7 @@ void Keeper::save()
 	for (int i = 0; i < get_num(); i++)
 	{
 		arr[i]->save(fp);
-		fprintf(fp, "%d\n", i);
+		
 	}
 
 	fclose(fp);
@@ -127,8 +126,6 @@ void Keeper::load()
 	char file[250];
 	printf("enter file name: ");
 	scanf("%s", &file);
-
-	printf("file %s\n", file);
 
 	FILE* fp = fopen(file, "r");
 	if (fp == NULL)
@@ -144,7 +141,7 @@ void Keeper::load()
 		throw (char*)"exeption: size <= 0";
 
 	char ch;
-
+	Heroes* add = nullptr;
 	for (int i = 0; i < size; i++)
 	{
 		if (fscanf(fp, "%c\n", &ch) != 1)
@@ -153,61 +150,90 @@ void Keeper::load()
 		{
 			case 'H':
 			{
-				char n[1000]; fgets(n, 1000, fp); trim(n);
-				char w[1000]; fgets(w, 1000, fp); trim(w);
+				int len = 0;
+				if (fscanf(fp, "%d \n", &len)!=1)
+					throw (char*)"exeption: string len not stated";
+				char *n = new char[len+1]; fgets(n, len+1, fp); trim(n);
+
+				if (fscanf(fp, "%d \n", &len) != 1)
+					throw (char*)"exeption: string len not stated";
+				char* w = new char[len + 1]; fgets(w, len + 1, fp); trim(w);
+				
 				int s = 0;
-				fscanf(fp, "%d\n", s);
+				if (fscanf(fp, "%d \n", &s) != 1)
+					throw (char*)"exeption: skill number not stated";
 				char** sklls = new char* [s];
+
 				for (int i = 0; i < s; i++)
 				{
-					char l[1000]; fgets(l, 1000, fp); trim(l);
+					if (fscanf(fp, "%d \n", &len) != 1)
+						throw (char*)"exeption: string len not stated"; 
+					char* l = new char[len + 1]; fgets(l, len + 1, fp); trim(l);
 					sklls[i] = new char[strlen(l) + 1];
 					strcpy(sklls[i], l);
 				}
-				Heroes* add = new Hero(n, w, s, sklls);
-				(*this) + add;
+				if (s == 0)
+					sklls = nullptr;
+				 add = new Hero(n, w, s, sklls);
 			}
 				break;
 
 			case 'V':
 			{
+				int len = 0;
+				if (fscanf(fp, "%d \n", &len) != 1)
+					throw (char*)"exeption: string len not stated"; 
+				char* n = new char[len + 1]; fgets(n, len + 1, fp);  trim(n);
+				
+				if (fscanf(fp, "%d \n", &len) != 1)
+					throw (char*)"exeption: string len not stated";
+				char* w = new char[len + 1]; fgets(w, len + 1, fp); trim(w);
+				
+				if (fscanf(fp, "%d \n", &len) != 1)
+					throw (char*)"exeption: string len not stated"; 
+				char* p = new char[len + 1]; fgets(p, len + 1, fp);  trim(p);
+				
+				if (fscanf(fp, "%d \n", &len) != 1)
+					throw (char*)"exeption: string len not stated";
+				char* d = new char[len + 1]; fgets(d, len + 1, fp);  trim(d);
 
-				char n[1000]; fgets(n, 1000, fp); trim(n);
-				char w[1000]; fgets(w, 1000, fp); trim(w);
-				char d[1000]; fgets(d, 1000, fp); trim(d);
-				char p[1000]; fgets(p, 1000, fp); trim(p);
 				int s = 0;
-				fscanf(fp, "%d\n", s);
+				if (fscanf(fp, "%d \n", &s) != 1)
+					throw (char*)"exeption: skill number not stated";
 				char** sklls = new char* [s];
 				for (int i = 0; i < s; i++)
 				{
-					char l[1000]; fgets(l, 1000, fp); trim(l);
+					if (fscanf(fp, "%d \n", &len) != 1)
+						throw (char*)"exeption: string len not stated"; 
+					char* l = new char[len + 1]; fgets(l, len + 1, fp); trim(l);
 					sklls[i] = new char[strlen(l) + 1];
 					strcpy(sklls[i], l);
 				}
-				Heroes* add = new Villain(n, w, d, p, s, sklls);
-				(*this) + add;
+				if (s == 0)
+					sklls = nullptr;
+				add = new Villain(n, w, d, p, s, sklls);
 			}
 				break;
 
 			case 'M':
 			{
-				char n[1000]; fgets(n, 1000, fp); trim(n);
-				char d[1000]; fgets(d, 1000, fp); trim(d);
+				int len = 0;
+				if (fscanf(fp, "%d \n", &len) != 1)
+					throw (char*)"exeption: string len not stated"; 
+				char* n = new char[len + 1]; fgets(n, len + 1, fp); trim(n);
+				
+				if (fscanf(fp, "%d \n", &len) != 1)
+					throw (char*)"exeption: string len not stated"; 
+				char* d = new char[len + 1]; fgets(d, len + 1, fp); trim(d);
 
-				Heroes* add = new Monster(n, d);
-				(*this) + add;
+				 add = new Monster(n, d);
 			}
 				break;
 
 			default:
 				throw (char*)"exeption: data error, wrong type";
 		}
-
-		int id;
-		fscanf(fp, "%d\n", &id);
-		if (id != 1)
-			return;
+		(*this) + add;
 
 	}
 

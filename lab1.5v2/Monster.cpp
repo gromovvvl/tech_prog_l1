@@ -10,8 +10,8 @@ void Monster::see()
 void Monster::save(FILE* f)
 {
 	fprintf(f, "M\n");
-	fprintf(f, "%s\n", get_name());
-	fprintf(f, "%s\n", get_description());
+	fprintf(f, "%d %s\n", strlen(get_name()), get_name());
+	fprintf(f, "%d %s\n", strlen(get_description()), get_description());
 }
 
 void Monster::edit()

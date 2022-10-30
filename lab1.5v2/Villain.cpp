@@ -5,23 +5,26 @@
 
 void Villain::see()
 {
-	printf("Villain: %s, deed: %s, place: %s, skills:\n", get_name(), get_deed(), get_place());
+	printf("Villain: %s, weapon %s, deed: %s, place: %s, skills:\n", get_name(), get_weapon(), get_deed(), get_place());
+
 	for (int i = 0; i < get_size(); i++)
 	{
 		printf(" - %s\n", get_skill(i));
 	}
 }
+
 void Villain::save(FILE* f)
 {
 	fprintf(f, "V\n");
-	fprintf(f, "%s\n", get_name());
-	fprintf(f, "%s\n", get_weapon());
-	fprintf(f, "%s\n", get_deed());
-	fprintf(f, "%s\n", get_place());
+	fprintf(f, "%d %s\n", strlen(get_name()), get_name());
+	fprintf(f, "%d %s\n", strlen(get_weapon()), get_weapon());
+	fprintf(f, "%d %s\n", strlen(get_place()), get_place());
+	fprintf(f, "%d %s\n", strlen(get_deed()), get_deed());
+	
 	fprintf(f, "%d\n", get_size());
 	for (int i = 0; i < get_size(); i++)
 	{
-		fprintf(f, "%s\n", get_skill(i));
+		fprintf(f, "%d %s\n", strlen(get_skill(i))+1, get_skill(i));
 	}
 }
 
@@ -160,11 +163,11 @@ char* Villain::get_weapon()
 	return weapon;
 }
 
-void Villain::set_place(char* p)
+void Villain::set_place(char* pl)
 {
 	delete place;
-	place = new char[strlen(p) + 1];
-	strcpy(place, p);
+	place = new char[strlen(pl) + 1];
+	strcpy(place, pl);
 }
 
 
