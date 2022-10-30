@@ -1,39 +1,38 @@
 #pragma once
 #include "heroes.h"
 
-class Hero : public Heroes
+class Villain : public Heroes
 {
 private:
 	char* weapon;
-	
+	char* deed;
+	char* place;
+
 	int size; // of skill array
 	char** skills;
 public:
 
-	Hero()
+	Villain()
 	{
-		printf("Hero()\n");
-		set_name((char*)"unknown");
-		set_size(0);
-		skills = nullptr;
-		set_weapon((char*)"unknown");
 
 	}
-
-	Hero(char* n, char* w, int s, char** a): weapon(w), size(s), skills(a)
+	Villain(char* n, char* w, char* d, char* pl, int s, char** a) : weapon(w), deed(d), place(pl), size(s), skills(a)
 	{
-		printf("Hero() w/params\n");
 		set_name(n);
 	}
-
-	~Hero()
+	~Villain()
 	{
-		printf("~Hero()\n");
-	}
 
+	}
 
 	void set_weapon(char* w);
 	char* get_weapon();
+
+	void set_place(char* p);
+	char* get_place();
+
+	void set_deed(char* d);
+	char* get_deed();
 
 	void set_size(int s);
 	int get_size();
@@ -42,5 +41,6 @@ public:
 	void set_skill(int id, char* s);
 
 	void see() override;
+	
 
 };

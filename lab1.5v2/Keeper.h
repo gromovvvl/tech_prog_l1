@@ -17,6 +17,7 @@ public:
 	}
 	
 	Keeper(int n, Heroes** ptr) : num(n), arr(ptr) { printf("Keeper w/params\n"); };
+
 	~Keeper()
 	{
 		printf("~Keeper()\n");
@@ -25,7 +26,12 @@ public:
 		num = 0;
 	}
 
-
+	void add();
+	void see();
+	void edit();
+	void del();
+	void save();
+	void load();
 
 
 };

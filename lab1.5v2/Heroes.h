@@ -1,3 +1,4 @@
+#pragma once
 #include "stdio.h"
 #include "string.h"
 
@@ -9,8 +10,9 @@ public:
 	Heroes() 
 	{ 
 		printf("Heroes()\n");
-		strcpy(name, "unknown"); 
+		set_name((char*)"unknown"); 
 	};
+
 	Heroes(char* s): name(s)
 	{
 		printf("Heroes w/params\n");
@@ -21,11 +23,10 @@ public:
 		printf("~Heroes()\n");
 	}
 
-	virtual void print() {};
+	virtual void see() {};
 
-	void setName(char* s)
-	{
-		strcpy(name, s);
-	}
+	void set_name(char* s);
+
+	char* get_name();
 
 };
