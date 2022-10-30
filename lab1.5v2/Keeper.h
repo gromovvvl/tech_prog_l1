@@ -7,6 +7,9 @@ private:
 	int num;
 	Heroes** arr;
 
+	void operator-(int t);
+	void operator+(Heroes* x);
+
 public:
 
 	Keeper()
@@ -33,5 +36,5 @@ public:
 	void save();
 	void load();
 
-
+	int get_num();
 };

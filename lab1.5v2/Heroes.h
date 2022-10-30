@@ -24,9 +24,10 @@ public:
 	}
 
 	virtual void see() {};
+	virtual void edit() {};
 
 	void set_name(char* s);
-
 	char* get_name();
+	void edit_name();
 
 };

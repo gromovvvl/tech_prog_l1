@@ -32,5 +32,5 @@ public:
 	char* get_description();
 
 	void see() override;
-
+	void edit() override;
 };

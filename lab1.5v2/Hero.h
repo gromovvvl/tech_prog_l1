@@ -8,6 +8,10 @@ private:
 	
 	int size; // of skill array
 	char** skills;
+	void add_skill();
+	void edit_skill();
+	void delete_skill();
+
 public:
 
 	Hero()
@@ -17,7 +21,6 @@ public:
 		set_size(0);
 		skills = nullptr;
 		set_weapon((char*)"unknown");
-
 	}
 
 	Hero(char* n, char* w, int s, char** a): weapon(w), size(s), skills(a)
@@ -42,5 +45,5 @@ public:
 	void set_skill(int id, char* s);
 
 	void see() override;
-
+	void edit() override;
 };
