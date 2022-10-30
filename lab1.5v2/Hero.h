@@ -45,5 +45,6 @@ public:
 	void set_skill(int id, char* s);
 
 	void see() override;
+	void save(FILE* f) override;
 	void edit() override;
 };

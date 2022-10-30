@@ -11,6 +11,18 @@ void Hero::see()
 	}
 }
 
+void Hero::save(FILE* f)
+{
+	fprintf(f, "H\n");
+	fprintf(f, "%s\n", get_name());
+	fprintf(f, "%s\n", get_weapon());
+	fprintf(f, "%d\n", get_size());
+	for (int i = 0; i < get_size(); i++)
+	{
+		fprintf(f, "%s\n", get_skill(i));
+	}
+}
+
 void Hero::add_skill()
 {
 	char new_skill[1000];

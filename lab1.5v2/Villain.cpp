@@ -11,7 +11,19 @@ void Villain::see()
 		printf(" - %s\n", get_skill(i));
 	}
 }
-
+void Villain::save(FILE* f)
+{
+	fprintf(f, "V\n");
+	fprintf(f, "%s\n", get_name());
+	fprintf(f, "%s\n", get_weapon());
+	fprintf(f, "%s\n", get_deed());
+	fprintf(f, "%s\n", get_place());
+	fprintf(f, "%d\n", get_size());
+	for (int i = 0; i < get_size(); i++)
+	{
+		fprintf(f, "%s\n", get_skill(i));
+	}
+}
 
 void Villain::add_skill()
 {

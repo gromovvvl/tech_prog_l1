@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "input.h"
+#include "string.h"
 
 void scanInt(int* _x)
 {
@@ -17,3 +18,9 @@ void scanInt(int* _x)
 	}
 }
 
+void trim(char* s)
+{
+	int l = strlen(s);
+	if (s[l - 1] == '\n')
+		s[l - 1] = '\0';
+}

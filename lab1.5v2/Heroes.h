@@ -24,6 +24,7 @@ public:
 	}
 
 	virtual void see() {};
+	virtual void save(FILE* f) {};
 	virtual void edit() {};
 
 	void set_name(char* s);
